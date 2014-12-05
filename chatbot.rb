@@ -29,8 +29,9 @@ RESPONSES = { 'the weather is (.*)' => 'I hate it when it\'s %{c1}',
 
 puts "Hello, what's your name?"
 name = gets.chomp
-puts "Hello #{name}"
+puts "Chatbot: Hello #{name.capitalize}"
 while(input = gets.chomp) do
   break if input == "quit"
-  puts get_response(input)
+  puts "Chatbot: " + get_response(input)
+  print name.capitalize + ": "
 end
