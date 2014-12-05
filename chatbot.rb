@@ -5,6 +5,12 @@ def get_response(input)
   response.nil? ? 'sorry?' : response % { c1: $1, c2: $2}
 end
 
+# courtesy of http://stackoverflow.com/questions/1489183/colorized-ruby-output
+class String
+def red;            "\033[31m#{self}\033[0m" end
+def green;          "\033[32m#{self}\033[0m" end
+end
+
 RESPONSES = { 'the weather is (.*)' => 'I hate it when it\'s %{c1}', 
               'I love (.*)' => 'I love %{c1} too', 
               'I groove to (.*) and (.*)' => 'I love %{c1} but I hate %{c2}',
@@ -27,11 +33,11 @@ RESPONSES = { 'the weather is (.*)' => 'I hate it when it\'s %{c1}',
           	  'Chatbot' => 'That\'s what they call me!',
           	  'help' => 'If you feel stuck with me (and you\'re running me from command line using "ruby chatbot.rb") press ctrl + C to exit'}
 
-puts "Hello, what's your name?"
+puts "Hello, what's your name?".red
 name = gets.chomp
-puts "Chatbot: Hello #{name.capitalize}"
+puts "Chatbot: Hello #{name.capitalize}".red
 while(input = gets.chomp) do
   break if input == "quit"
-  puts "Chatbot: " + get_response(input)
-  print name.capitalize + ": "
+  puts "Chatbot: ".red + get_response(input).red
+  print name.capitalize.green + ": ".green
 end
