@@ -34,6 +34,7 @@ RESPONSES = { 'the weather is (.*)' => 'I hate it when it\'s %{c1}',
           	  'help' => 'If you feel stuck with me (and you\'re running me from command line using "ruby chatbot.rb") press ctrl + C to exit'}
 
 puts "Hello, what's your name?".red
+print "You".capitalize.green + ": ".green
 name = gets.chomp
 puts "Chatbot: Hello #{name.capitalize}".red
 while(input = gets.chomp) do
