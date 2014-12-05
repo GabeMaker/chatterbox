@@ -39,6 +39,7 @@ puts "Hello, what's your name?".red
 print "You".capitalize.green + ": ".green
 name = gets.chomp
 puts "Chatbot: Hello #{name.capitalize}".red
+print name.capitalize.green + ": ".green
 while(input = gets.chomp) do
   break if input == "quit"
   puts "Chatbot: ".red + get_response(input).red
