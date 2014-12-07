@@ -17,17 +17,19 @@ end
 def save_responses
   file = File.open("responses.csv", "w")
   RESPONSES.each do |query, answer|
-    line = "#{query}, #{answer}"
+    line = "\"#{query}\", \"#{answer}\""
     file.puts line
   end
   file.close
 end
 
-# def load_students
-#   file = File.open("students.csv", "r")
+# trying to get load function to work, stopped after difficulty with commas
+
+# def load_response
+#   file = File.open("responses.csv", "r")
 #   file.readlines.each do |line|
-#   name, cohort = line.chomp.split(',')
-#     @students << {:name => name, :cohort => cohort.to_sym}
+#     result_array = line.chomp.split(',')
+#     query, answer = result_array
 #   end
 #   file.close
 # end
@@ -39,29 +41,31 @@ def red;            "\033[31m#{self}\033[0m" end
 def green;          "\033[32m#{self}\033[0m" end
 end
 
-RESPONSES = { 'A=(.*) B=(.*) C=(.*)' => 'Then %{c1} squared equals %{c2} squared plus %{c3} squared - assuming A is the length of the longest side of a right angled triangle and B and C are the remaining lengths. Simple, eh?',
+RESPONSES = {
+  'A=(.*) B=(.*) C=(.*)' => 'Then %{c1} squared equals %{c2} squared plus %{c3} squared - assuming A is the length of the longest side of a right angled triangle and B and C are the remaining lengths. Simple, eh?',
 
-              'the weather is (.*)' => 'I hate it when it\'s %{c1}', 
-              'I love (.*)' => 'I love %{c1} too', 
-              'I groove to (.*) and (.*)' => 'I love %{c1} but I hate %{c2}',
-          	  'I hate (.*)'=> 'I don\'t hate %{c1}, but I\'m not that keen',
-          	  'why(.*)' => 'why indeed... but what does it matter?',
-          	  '(.*) or (.*)' => 'choices, choices! %{c2} ... %{c1}...? - I can\'t decide!',
+  'the weather is (.*)' => 'I hate it when it\'s %{c1}', 
+  'I love (.*)' => 'I love %{c1} too', 
+  'I groove to (.*) and (.*)' => 'I love %{c1} but I hate %{c2}',
+  'I hate (.*)'=> 'I don\'t hate %{c1}, but I\'m not that keen',
+  'why(.*)' => 'why indeed... but what does it matter?',
+  '(.*) or (.*)' => 'choices, choices! %{c2} ... %{c1}...? - I can\'t decide!',
 
-          	  'goodbye' => 'bye', 
-              'sayonara' => 'sayonara',
-              'Hi' => 'Hi there!',
-          	  'Hello' => 'Hello!',
-          	  'hi' => 'hi!',
-          	  'hello' => 'hello!',
-          	  'how are you?' => 'Pretty good, thank you. And you?',
-          	  'ok' => 'OK is okay... Could be worse I guess',
-          	  'good' => 'Good? good is great!',
-          	  'yeah' => 'yep',
-          	  'name' => 'My name is Chatbot',
-          	  'chatbot' => 'That\'s my name!',
-          	  'Chatbot' => 'That\'s what they call me!',
-          	  'help' => 'If you feel stuck with me (and you\'re running me from command line using "ruby chatbot.rb") press ctrl + C to exit'}
+  'goodbye' => 'bye', 
+  'sayonara' => 'sayonara',
+  'Hi' => 'Hi there!',
+  'Hello' => 'Hello!',
+  'hi' => 'hi!',
+  'hello' => 'hello!',
+  'how are you?' => 'Pretty good, thank you. And you?',
+  'ok' => 'OK is okay... Could be worse I guess',
+  'good' => 'Good? good is great!',
+  'yeah' => 'yep',
+  'name' => 'My name is Chatbot',
+  'chatbot' => 'That\'s my name!',
+  'Chatbot' => 'That\'s what they call me!',
+  'help' => 'If you feel stuck with me (and you\'re running me from command line using "ruby chatbot.rb") press ctrl + C to exit'
+}
 
 puts "Chatbot: Hello, what's your name?".red
 print "You".capitalize.green + ": ".green
