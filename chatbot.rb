@@ -14,6 +14,24 @@ def add_new
     puts "Response added!"
 end
 
+def save_responses
+  file = File.open("responses.csv", "w")
+  RESPONSES.each do |query, answer|
+    line = "#{query}, #{answer}"
+    file.puts line
+  end
+  file.close
+end
+
+# def load_students
+#   file = File.open("students.csv", "r")
+#   file.readlines.each do |line|
+#   name, cohort = line.chomp.split(',')
+#     @students << {:name => name, :cohort => cohort.to_sym}
+#   end
+#   file.close
+# end
+
 
 # courtesy of http://stackoverflow.com/questions/1489183/colorized-ruby-output
 class String
@@ -60,3 +78,5 @@ while(input = gets.chomp) do
 
   print name.capitalize.green + ": ".green
 end
+
+save_responses
